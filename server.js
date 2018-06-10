@@ -33,12 +33,12 @@ app.use(basicAuth(function(user, pass){
 // 4) to handle adding a comment to a post
 // 5) to handle deleting a comment from a post
 
-app.listen(SERVER_PORT, () => {
-console.log("Server started on port " + SERVER_PORT);
+app.listen(process.env.PORT || SERVER_PORT, () => {
+    console.log("Server started on port " + SERVER_PORT);
 });
 
 // Connect to Spacebook DataBase
-mongoose.connect('mongodb://localhost/spacebookDB');
+mongoose.connect(process.env.CONNECTION_STRING || 'mongodb://localhost/spacebookDB');
 
 // route get posts
 app.get('/posts', function (req, res) {
